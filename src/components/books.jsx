@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import NavBar from "./navbar";
 import axios from "axios";
-import '../custom.css';
+import {
+    Redirect
+} from "react-router-dom";
 require('dotenv').config();
 
 class Books extends Component {
@@ -24,6 +26,18 @@ class Books extends Component {
         return data;
     }
 
+    handleEditClick = async (id) => {
+        console.log("Editing ", id);
+        // let { books } = this.state;
+
+        let { data } = await axios.post(`https://immense-depths-34650.herokuapp.com/api/books/get/${id}`);
+        console.log(data);
+
+        <Redirect
+            to="/"
+        />
+    }
+
     render() {
         const { books } = this.state;
 
@@ -44,8 +58,8 @@ class Books extends Component {
                             <tr key={book._id}>
                                 <td className="tg-0pky">{book.title}</td>
                                 <td className="tg-0pky">{book.author}</td>
-                                <td className="tg-0pky"><a className="myButton" href="/edit/2">Edit</a></td>
-                                <td className="tg-0pky"><a className="delete" href="/delete/2">Delete</a></td>
+                                <td className="tg-0pky"><a className="myButton" onClick={() => this.handleEditClick(book._id)}>Edit</a></td>
+                                <td className="tg-0pky"><a className="delete" onClick={() => this.handleDeleteClick(book._id)}>Delete</a></td>
                             </tr>
                         ))
                         }

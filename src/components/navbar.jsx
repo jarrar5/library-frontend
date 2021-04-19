@@ -6,17 +6,20 @@ import {
 const NavBar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to="/">Home</Link>
+            <Link className="navbar-brand" to="/">Library</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="navbar-item" to="/books">Books</Link>
+                    <li className="nav-item navBarPad">
+                        <Link className="navbar-item navLinks" to="/">Home</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="navbar-item" to="/book">Add Book</Link>
+                        <Link className="navbar-item navLinks" to="/books">Books</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="navbar-item navLinks" to="/book">Add Book</Link>
                     </li>
                 </ul>
             </div>

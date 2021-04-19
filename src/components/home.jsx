@@ -5,7 +5,9 @@ class Home extends Component {
     render() {
         return <React.Fragment>
             <NavBar />
-            <h1>Home</h1>
+            <div className="container" style={{ margin: "auto", minHeight: "500px" }}>
+                <h1 id="home" style={{ textAlign: "center", padding: "20%" }}> Welcome to the Library App</h1>
+            </div>
         </React.Fragment>
     }
 }
