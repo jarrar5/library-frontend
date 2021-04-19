@@ -67,8 +67,10 @@ class Books extends Component {
                             <tr key={book._id}>
                                 <td className="tg-0pky">{book.title}</td>
                                 <td className="tg-0pky">{book.author}</td>
-                                <td className="tg-0pky"><Link to="/updatebook" state={book} className="btn btn-primary">Edit</Link></td>
-                                {/* <td className="tg-0pky"><a className="myButton" onClick={() => <Redirect to="/updatebook" />}>Edit</a></td> */}
+                                <td className="tg-0pky"><button className="btn btn-primary" onClick={() => this.props.history.push({
+                                    pathname: "/updatebook",
+                                    state: { book }
+                                })}>Edit</button></td>
                                 <td className="tg-0pky"><a className="delete" onClick={() => this.handleDeleteClick(book._id)}>Delete</a></td>
                             </tr>
                         ))

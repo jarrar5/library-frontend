@@ -6,10 +6,8 @@ class UpdateBook extends Component {
 
     constructor(props) {
         super(props);
-
-        console.log(this.props);
         this.state = {
-            book: { title: "", author: "" },
+            book: { title: "", author: "", ...(props?.location?.state?.book || {}) },
         }
     }
 

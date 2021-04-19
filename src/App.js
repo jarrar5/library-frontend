@@ -10,26 +10,15 @@ import AddBook from "./components/addbook";
 import Books from "./components/books";
 import UpdateBook from "./components/updateBook";
 
-function App() {
+function App(props) {
     return (
         <Router>
-            <div>
-                <Switch>
-                    <Route path="/addbook">
-                        <AddBook />
-                    </Route>
-                    <Route path="/updatebook">
-                        <UpdateBook />
-                    </Route>
-                    <Route path="/books">
-                        <Books />
-                    </Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
-
-                </Switch>
-            </div>
+            <Switch>
+                <Route path="/addbook" component={AddBook} />
+                <Route path="/updatebook" component={UpdateBook} />
+                <Route path="/books" component={Books} />
+                <Route path="/" component={Home} />
+            </Switch>
         </Router>
     );
 }
