@@ -6,16 +6,20 @@ import {
     Route,
 } from "react-router-dom";
 import Home from "./components/home";
-import Book from "./components/book";
+import AddBook from "./components/addbook";
 import Books from "./components/books";
+import UpdateBook from "./components/updateBook";
 
 function App() {
     return (
         <Router>
             <div>
                 <Switch>
-                    <Route path="/book">
-                        <Book />
+                    <Route path="/addbook">
+                        <AddBook />
+                    </Route>
+                    <Route path="/updatebook">
+                        <UpdateBook />
                     </Route>
                     <Route path="/books">
                         <Books />
@@ -23,6 +27,7 @@ function App() {
                     <Route path="/">
                         <Home />
                     </Route>
+
                 </Switch>
             </div>
         </Router>

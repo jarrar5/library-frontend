@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./navbar";
 import axios from "axios";
 import {
-    Redirect
+    Link
 } from "react-router-dom";
 require('dotenv').config();
 
@@ -11,6 +11,7 @@ class Books extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            fetchingBooks: false,
             books: [],
         }
     }
@@ -20,32 +21,40 @@ class Books extends Component {
     }
 
     getBooks = async () => {
+        this.setState({ fetchingBooks: true })
         let { data } = await axios.get(`https://immense-depths-34650.herokuapp.com/api/books`);
 
-        this.setState({ books: data });
+        this.setState({ books: data, fetchingBooks: false });
         return data;
     }
 
-    handleEditClick = async (id) => {
-        console.log("Editing ", id);
-        // let { books } = this.state;
+    // handleEditClick = async (id) => {
+    //     <Redirect
+    //         to="/updatebook"
+    //     />
+    // }
 
-        let { data } = await axios.post(`https://immense-depths-34650.herokuapp.com/api/books/get/${id}`);
-        console.log(data);
+    handleDeleteClick = async (id) => {
+        let { books } = this.state;
 
-        <Redirect
-            to="/"
-        />
+        let index = books.findIndex(b => b._id === id);
+
+        let book = books.splice(index, 1);
+
+        await axios.delete(`https://immense-depths-34650.herokuapp.com/api/books/delete/${id}`);
+
+        this.setState({ books });
     }
 
     render() {
-        const { books } = this.state;
+        const { books, fetchingBooks } = this.state;
 
         return <React.Fragment>
             <NavBar />
             <div className="container" style={{ margin: "auto", minheight: "50px" }}>
                 <h4 id="home" style={{ textAlign: "right" }}>Books</h4>
-                <table className="tg">
+                {fetchingBooks && <h1>Fetching Books.... </h1>}
+                {!fetchingBooks && <table className="tg">
                     <thead>
                         <tr>
                             <th className="tg-lboi">Title</th>
@@ -58,13 +67,14 @@ class Books extends Component {
                             <tr key={book._id}>
                                 <td className="tg-0pky">{book.title}</td>
                                 <td className="tg-0pky">{book.author}</td>
-                                <td className="tg-0pky"><a className="myButton" onClick={() => this.handleEditClick(book._id)}>Edit</a></td>
+                                <td className="tg-0pky"><Link to="/updatebook" state={book} className="btn btn-primary">Edit</Link></td>
+                                {/* <td className="tg-0pky"><a className="myButton" onClick={() => <Redirect to="/updatebook" />}>Edit</a></td> */}
                                 <td className="tg-0pky"><a className="delete" onClick={() => this.handleDeleteClick(book._id)}>Delete</a></td>
                             </tr>
                         ))
                         }
                     </tbody>
-                </table>
+                </table>}
             </div>
         </React.Fragment >
     }
