@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./navbar";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 class UpdateBook extends Component {
 
@@ -21,9 +22,9 @@ class UpdateBook extends Component {
 
     handleUpdate = async () => {
         const { book } = this.state;
-        let { data } = await axios.put(`https://immense-depths-34650.herokuapp.com/api/books/update`, book);
-        console.log(data);
+        let { data } = await axios.put(`https://immense-depths-34650.herokuapp.com/api/books/update/${book._id}`, book);
         this.setState({ book: { title: "", author: "" } });
+        toast.success("Book Updated!");
         return data;
     }
 
@@ -51,7 +52,7 @@ class UpdateBook extends Component {
                     <div className="form-group">
                         <label className="col-md-4 control-label" htmlFor="save"></label>
                         <div className="col-md-8" style={{ float: "right" }}>
-                            <button className="btn btn-success" id="save" name="save" onClick={() => this.handleSave()}>Update</button>
+                            <button className="btn btn-success" id="save" name="save" onClick={() => this.handleUpdate()}>Update</button>
                             <button className="btn btn-danger" id="clear" type="reset" name="clear" onClick={() => this.setState({ book: { title: "", author: "" } })}>Clear</button>
                         </div>
                     </div>

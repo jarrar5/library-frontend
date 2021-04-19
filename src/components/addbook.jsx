@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./navbar";
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 class AddBook extends Component {
 
@@ -22,8 +23,8 @@ class AddBook extends Component {
     handleSave = async () => {
         const { book } = this.state;
         let { data } = await axios.post(`https://immense-depths-34650.herokuapp.com/api/books/create`, book);
-        console.log(data);
         this.setState({ book: { title: "", author: "" } });
+        toast.success("Book Saved!");
         return data;
     }
 

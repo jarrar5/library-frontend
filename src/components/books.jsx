@@ -4,6 +4,7 @@ import axios from "axios";
 import {
     Link
 } from "react-router-dom";
+import { toast } from 'react-toastify';
 require('dotenv').config();
 
 class Books extends Component {
@@ -44,6 +45,8 @@ class Books extends Component {
         await axios.delete(`https://immense-depths-34650.herokuapp.com/api/books/delete/${id}`);
 
         this.setState({ books });
+
+        toast.success("Book Deleted!");
     }
 
     render() {
