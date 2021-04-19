@@ -28,7 +28,6 @@ class UpdateBook extends Component {
     }
 
     render() {
-        // const { state } = this.props.location;
         return <React.Fragment>
             <NavBar />
             <div className="container" style={{ margin: "auto", minheight: "50px" }}>
@@ -53,7 +52,7 @@ class UpdateBook extends Component {
                         <label className="col-md-4 control-label" htmlFor="save"></label>
                         <div className="col-md-8" style={{ float: "right" }}>
                             <button className="btn btn-success" id="save" name="save" onClick={() => this.handleSave()}>Update</button>
-                            <button className="btn btn-danger" id="clear" type="reset" name="clear" onClick={() => console.log('Cleared')}>Clear</button>
+                            <button className="btn btn-danger" id="clear" type="reset" name="clear" onClick={() => this.setState({ book: { title: "", author: "" } })}>Clear</button>
                         </div>
                     </div>
                 </fieldset>

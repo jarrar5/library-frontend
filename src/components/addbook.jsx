@@ -52,7 +52,7 @@ class AddBook extends Component {
                         <label className="col-md-4 control-label" htmlFor="save"></label>
                         <div className="col-md-8" style={{ float: "right" }}>
                             <button className="btn btn-success" id="save" name="save" onClick={() => this.handleSave()}>Save</button>
-                            <button className="btn btn-danger" id="clear" type="reset" name="clear" onClick={() => console.log('Cleared')}>Clear</button>
+                            <button className="btn btn-danger" id="clear" type="reset" name="clear" onClick={() => this.setState({ book: { title: "", author: "" } })}>Clear</button>
                         </div>
                     </div>
                 </fieldset>
