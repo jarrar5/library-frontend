@@ -19,9 +19,9 @@ class UpdateBook extends Component {
         this.setState({ book });
     }
 
-    handleSave = async () => {
+    handleUpdate = async () => {
         const { book } = this.state;
-        let { data } = await axios.post(`https://immense-depths-34650.herokuapp.com/api/books/create`, book);
+        let { data } = await axios.put(`https://immense-depths-34650.herokuapp.com/api/books/update`, book);
         console.log(data);
         this.setState({ book: { title: "", author: "" } });
         return data;
